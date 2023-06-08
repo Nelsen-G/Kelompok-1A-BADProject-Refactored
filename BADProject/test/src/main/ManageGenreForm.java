@@ -72,7 +72,7 @@ public class ManageGenreForm {
 }
 
 class GenreFormWindow {
-	private ManageGenreForm manageGenreForm;
+    private ManageGenreForm manageGenreForm;
     private Stage primaryStage;
     private BorderPane bp;
     private GridPane windowGP, leftGP;
@@ -85,7 +85,7 @@ class GenreFormWindow {
     private Label nameLbl;
     private TextField nameField;
     private Button insertButton;
-    
+
     public TableView<Genre> getGenreTable() {
         return genreTable;
     }
@@ -100,28 +100,28 @@ class GenreFormWindow {
 
     public GenreFormWindow(Stage primaryStage) {
         this.primaryStage = primaryStage;
-		bp = new BorderPane();
-		windowGP = new GridPane();
-		leftGP = new GridPane();
-		
-		window = new Window();
-		
-		menuBar = new MenuBar();
-		
-		userMenu = new Menu("User");
-		manageMenu = new Menu("Manage");
-		
-		logOut = new MenuItem("Logout");
-		bookMenu = new MenuItem("Book");
-		genreMenu = new MenuItem("Genre");
-		
-		nameLbl = new Label("Name");
-		nameField = new TextField();
-		
-		insertButton = new Button("Insert");
-		insertButton.setPrefWidth(400);
-		
-		genreTable = new TableView<Genre>();
+        bp = new BorderPane();
+        windowGP = new GridPane();
+        leftGP = new GridPane();
+
+        window = new Window();
+
+        menuBar = new MenuBar();
+
+        userMenu = new Menu("User");
+        manageMenu = new Menu("Manage");
+
+        logOut = new MenuItem("Logout");
+        bookMenu = new MenuItem("Book");
+        genreMenu = new MenuItem("Genre");
+
+        nameLbl = new Label("Name");
+        nameField = new TextField();
+
+        insertButton = new Button("Insert");
+        insertButton.setPrefWidth(400);
+
+        genreTable = new TableView<Genre>();
     }
 
     public BorderPane getLayout() {
@@ -141,9 +141,9 @@ class GenreFormWindow {
         windowGP.add(genreTable, 1, 0);
         windowGP.setMargin(leftGP, new Insets(70, 30, 30, 30));
         windowGP.setMargin(genreTable, new Insets(0));
-        
+
         window.getContentPane().getChildren().add(windowGP);
-		window.setTitle("Manage Genre");
+        window.setTitle("Manage Genre");
 
         bp.setTop(menuBar);
         bp.setCenter(window);
@@ -166,7 +166,7 @@ class GenreFormWindow {
 
         populateGenreTable();
     }
-    
+
     public void populateGenreTable() {
         Connect cn = new Connect();
         String q = "SELECT * FROM genre";
@@ -179,7 +179,7 @@ class GenreFormWindow {
                 genreTable.getItems().add(g);
             }
         } catch (SQLException e) {
-        	// TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
     }
@@ -190,7 +190,7 @@ class GenreFormWindow {
         genreMenu.setOnAction(event -> handleGenreMenu());
         insertButton.setOnAction(event -> handleInsertButton());
     }
-    
+
     private void handleLogout() {
         primaryStage.close();
         Stage newStage = new Stage();
@@ -220,9 +220,9 @@ class GenreFormWindow {
             e.printStackTrace();
         }
     }
-    
+
     private void showAlert(String title, String message) {
-    	alertMessage = new Alert(AlertType.ERROR);
+        alertMessage = new Alert(AlertType.ERROR);
         alertMessage.setTitle(title);
         alertMessage.setHeaderText(message);
         alertMessage.show();
@@ -232,7 +232,7 @@ class GenreFormWindow {
         String name = nameField.getText();
 
         if (name.length() < 5 || name.length() > 12) {
-        	showAlert("Error", "Genre name must be between 5 - 12 characters");
+            showAlert("Error", "Genre name must be between 5 - 12 characters");
         } else {
             Connect cn = new Connect();
             String q = "INSERT INTO genre VALUES(null, \"" + name + "\")";
